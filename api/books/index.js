@@ -1,5 +1,5 @@
-import * as express from 'express';
-import { showBooks } from './controller';
+const express = require('express');
+const showBooks = require('./controller').showBooks;
 
 let router = express.Router();
 const pathName = './data/data.json';
@@ -8,4 +8,4 @@ router.get('/', (request, response) => {
     showBooks(pathName).then(data => response.json(data));
 });
 
-export = router;
+module.exports = router;
