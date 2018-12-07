@@ -1,10 +1,15 @@
-const readFile = require('fs').readFile;
+const mongodb = require('mongodb');
 
-const showBooks = (pathName) => {
+let MongoClient = mongodb.MongoClient;
+const mongoUrl = 'mongodb://localhost:27017/BOOKS_DB';
+
+function showBooks() {
     return new Promise((resolve, reject) => {
-        readFile(pathName, 'utf-8', (err, data) => {
-            err ? reject(err) : resolve(JSON.parse(data))
-        });
+        MongoClient.connect(mongoUrl, (err, db) => {
+
+            let collection = db.collection('books');
+            collection.find({}).toArray((err, result) => resolve(result));
+        });        
     });
 }
 
