@@ -13,7 +13,7 @@ const pathName = './data/data.json';
 
 router.post('/', (request, response) => {
     const book = request.body;
-    fs.writeFile(pathName, JSON.stringify(book), err =>  err ? response.send(err) : response.send('Book saved correctly!')); 
-});
+    controller.saveBook(book);
+    });
 
 module.exports = router;

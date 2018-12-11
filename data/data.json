@@ -1,1 +1,15 @@
-{"id":5,"name":"The Meaning of General Relativity","author":"Albert Einstein","year":1967}
+[
+    {
+        "id": 1,
+        "name": "Spacetime: Foundations of General Relativity and Differential Geometry",
+        "author": "Marcus Kriele",
+        "year": 2003
+
+    },
+    {
+        "id": 2,
+        "name": "Quantum Mechanics for Mathematicians",
+        "author": "Leon A. Takhtajan",
+        "year": 2008 
+    }
+]
