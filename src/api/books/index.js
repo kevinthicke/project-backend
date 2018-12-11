@@ -9,11 +9,9 @@ router.get('/', (request, response) => {
                                   .catch(err => response.send(err));
 });
 
-const pathName = './data/data.json';
-
 router.post('/', (request, response) => {
     const book = request.body;
     controller.saveBook(book);
-    });
+});
 
 module.exports = router;

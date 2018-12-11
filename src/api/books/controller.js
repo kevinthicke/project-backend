@@ -26,15 +26,7 @@ function saveBook(book) {
     });
 }
 
-const myBook = {
-    id: 3,
-    name: "The Meaning of General Relativity",
-    author: "Albert Einstein",
-    year: 1967
-}
-
-saveBook(myBook);
-
 module.exports = {
-    showBooks
+    showBooks,
+    saveBook
 }
