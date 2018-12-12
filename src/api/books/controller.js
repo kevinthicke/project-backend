@@ -21,7 +21,7 @@ function showBooks() {
     });
 }
 
-/*function insertBook (book) {
+function insertBook (book) {
     return new Promise ((resolve, reject) => {
         showBooks().then(data => {
             data.push(book);
@@ -33,10 +33,18 @@ function showBooks() {
 
 function saveBook(book) {
     insertBook(book).then( data => {
-        fs.writeFile(pathName, JSON.stringify(data), err => err ? console.log(err) : console.log('Book saved!'));
+        MongoClient.connect(MONGO_URL, (err, client) => {
+            if(err) reject(err);
+            else {
+                const db = client.db('BOOK_DB');
+                const booksCollection = db.collection('books');
+                booksCollection.insert(book).then(result => resolve(result));
+            }
+        });
     });
-}*/
+}
 
 module.exports = {
-    showBooks
+    showBooks,
+    saveBook
 }

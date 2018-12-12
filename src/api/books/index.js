@@ -1,6 +1,5 @@
 const express = require('express');
 const controller = require('./controller');
-const fs = require('fs');
 
 let router = express.Router();
 
@@ -9,11 +8,10 @@ router.get('/', (request, response) => {
                           .catch(err => response.send(err));
 });
 
-/*
+
 router.post('/', (request, response) => {
     const book = request.body;
     controller.saveBook(book);
 });
-*/
 
 module.exports = router;
