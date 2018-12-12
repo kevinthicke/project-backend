@@ -1,11 +1,6 @@
 const mongodb = require('mongodb');
-const fs = require('fs');
 
 const MongoClient = mongodb.MongoClient;
-const Server = mongodb.Server;
-const ObjectId = mongodb.ObjectId;
-
-const pathName = './data/data.json';
 const MONGO_URL = 'mongodb://localhost:27017';
 
 function showBooks() {
