@@ -1,16 +1,27 @@
+const mongodb = require('mongodb');
 const fs = require('fs');
 
+const MongoClient = mongodb.MongoClient;
+const Server = mongodb.Server;
+const ObjectId = mongodb.ObjectId;
+
 const pathName = './data/data.json';
+const MONGO_URL = 'mongodb://localhost:27017';
 
 function showBooks() {
     return new Promise((resolve, reject) => {
-        fs.readFile(pathName, 'utf-8', (err, data) => {
-            err ? reject(err) : resolve(JSON.parse(data))
+        MongoClient.connect(MONGO_URL, (err, client) => {
+            if(err) reject(err);
+            else {
+                const db = client.db('BOOK_DB');
+                const booksCollection = db.collection('books');
+                booksCollection.find({}).toArray().then(result => resolve(result));
+            }
         });
     });
 }
 
-function insertBook (book) {
+/*function insertBook (book) {
     return new Promise ((resolve, reject) => {
         showBooks().then(data => {
             data.push(book);
@@ -24,9 +35,8 @@ function saveBook(book) {
     insertBook(book).then( data => {
         fs.writeFile(pathName, JSON.stringify(data), err => err ? console.log(err) : console.log('Book saved!'));
     });
-}
+}*/
 
 module.exports = {
-    showBooks,
-    saveBook
+    showBooks
 }
